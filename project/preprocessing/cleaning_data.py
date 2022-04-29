@@ -62,6 +62,11 @@ def add_postcodes(clean_filename,postc_filename):
 
     #Drop listings without postcodes
     df = df.dropna(subset=['postcode'])
+    
+    #Create "Regions"
+    df['region'] = df.apply(lambda x: round(x.postcode/100),axis=1)
+
+    #Reset index
     df.reset_index(drop=True,inplace=True)
     
     #Save data

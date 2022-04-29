@@ -9,9 +9,6 @@ def create_model(data_dir, model_dir):
     #Import data
     df = pd.read_csv(data_dir)
 
-    #Create "Regions"
-    df['region'] = df.apply(lambda x: round(x.postcode/100),axis=1)
-
     #Creature Features & target
     features = [
     'amount_of_rooms',
@@ -38,5 +35,8 @@ def create_model(data_dir, model_dir):
     reg.fit(X_train, y_train)
     _score = reg.score(X_test, y_test)
 
+    #output model score
     print(f"Model Created with score {_score}")
+    
+    #Save model to file
     dump(reg, model_dir)
