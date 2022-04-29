@@ -1,12 +1,5 @@
 import pandas as pd
 import numpy as np
-import os
-
-ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
-
-RAW_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Scraper.csv')
-POSTC_DATA = os.path.join(ROOT_DIR,'data','zipcode-belgium.csv')
-CLEAN_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Clean.csv')
 
 #Clean scrapped data
 def clean_data(raw_filename, clean_filename):
@@ -79,5 +72,4 @@ def preprocess(input_data):
     #TODO
     return
 
-clean_data(RAW_DATA, CLEAN_DATA)
-add_postcodes(CLEAN_DATA, POSTC_DATA)
+
