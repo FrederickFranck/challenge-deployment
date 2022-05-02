@@ -1,5 +1,4 @@
 import os
-from urllib import request
 from model.model import create_model
 from preprocessing.cleaning_data import add_postcodes, clean_data
 from flask import Flask,request
@@ -33,8 +32,6 @@ def route_predict():
     
     if request.method == 'POST':
         return 'post'
-
-
 
 
 if __name__ == '__main__':
