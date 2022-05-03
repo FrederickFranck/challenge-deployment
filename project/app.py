@@ -1,6 +1,12 @@
 import os
+from flask_expects_json import expects_json
+
+from preprocessing.cleaning_data import add_postcodes, clean_data , preprocess
+from preprocessing.schema import schema
 from model.model import create_model
-from preprocessing.cleaning_data import add_postcodes, clean_data
+
+from predict.prediction import predict
+
 from flask import Flask,request
 from joblib import load
 
@@ -10,10 +16,14 @@ POSTC_DATA = os.path.join(ROOT_DIR,'data','zipcode-belgium.csv')
 CLEAN_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Clean.csv')
 MODEL_DIR = os.path.join(ROOT_DIR,'model','GBR.joblib')
 
+
+
+MODEL = 0
+if (MODEL):
 #Clean data & build the model
-clean_data(RAW_DATA, CLEAN_DATA)
-add_postcodes(CLEAN_DATA, POSTC_DATA)
-create_model(CLEAN_DATA, MODEL_DIR)
+    clean_data(RAW_DATA, CLEAN_DATA)
+    add_postcodes(CLEAN_DATA, POSTC_DATA)
+    create_model(CLEAN_DATA, MODEL_DIR)
 
 model = load(MODEL_DIR)
 
@@ -25,13 +35,21 @@ def home():
     return "I am alive"
 
 @app.route("/predict", methods=['GET','POST'])
+@expects_json(schema, ignore_for=['GET'])
 def route_predict():
     
     if request.method == 'GET':
-        return 'get'
+        
+        return schema
     
     if request.method == 'POST':
-        return 'post'
+        json = request.json
+        df = preprocess(json)
+        print(df)   
+        
+        value = round(predict(model,df))
+        return f"Predicted price is € {value:,}"     
+            
 
 
 if __name__ == '__main__':

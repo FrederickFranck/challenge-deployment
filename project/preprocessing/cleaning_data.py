@@ -1,8 +1,11 @@
+from ast import Str
+from tokenize import String
+from typing import Dict
 import pandas as pd
 import numpy as np
 
 #Clean scrapped data
-def clean_data(raw_filename, clean_filename):
+def clean_data(raw_filename : String, clean_filename: String) -> None:
     df = pd.read_csv(raw_filename, encoding='latin-1')
     cleandf = df.copy()
     
@@ -42,7 +45,7 @@ def clean_data(raw_filename, clean_filename):
     
 
 #Adds postcodes to cleaned data
-def add_postcodes(clean_filename,postc_filename):
+def add_postcodes(clean_filename : String,postc_filename: String) -> None:
     df = pd.read_csv(clean_filename)
     z = pd.read_csv(postc_filename)
     
@@ -73,8 +76,106 @@ def add_postcodes(clean_filename,postc_filename):
     df.to_csv(clean_filename,index_label=False)
 
 
-def preprocess(input_data):
-    #TODO
-    return
+def preprocess(input_data: Dict) -> pd.DataFrame:
+    
+    #Create empty dataframe
+    column_names = [
+        'amount_of_rooms',
+        'area',
+        'has_full_kitchen',
+        'is_furnished',
+        'has_open_fire',
+        'has_terrace',
+        'has_garden',
+        'garden_area',
+        'amount_of_facades',
+        'has_pool',
+        'land_area',
+        'region'
+        ]
+    
+    df = pd.DataFrame(columns=column_names)
+    
+    #Read json into a list 
+    
+    #Required Parameters    
+    amount_of_rooms = input_data["rooms-number"]
+    area = input_data["area"]
+    region = input_data["zip-code"]
+    region = region[:2]
+    
+    #Optional parameters
+    has_full_kitchen = False
+    try:
+        has_full_kitchen = input_data["equipped-kitchen"]
+    except:
+        pass
+    
+    is_furnished = False
+    try:
+        is_furnished = input_data["furnished"]
+    except:
+        pass
+    
+    has_open_fire = False
+    try:
+        has_open_fire = input_data["open-fire"]
+    except:
+        pass
+    
+    has_terrace = False
+    try:
+        has_terrace = input_data["terrace"]
+    except:
+        pass
+    
+    has_garden = False
+    try:
+        has_garden = input_data["garden"]
+    except:
+        pass
+    
+    garden_area = 0
+    try:
+        garden_area = input_data["garden-area"]
+    except:
+        pass
+    
+    amount_of_facades = 0
+    try:
+        amount_of_facades = input_data["facades-number"]
+    except:
+        pass
+    
+    has_pool = False
+    try:
+        has_pool = input_data["swimming-pool"]
+    except:
+        pass
+    
+    land_area = 0
+    try:
+        land_area = input_data["land-area"]
+    except:
+        pass
+
+    #Append input data to dataframe
+    
+    df.loc[len(df)] = [
+        amount_of_rooms,
+        area,
+        has_full_kitchen,
+        is_furnished,
+        has_open_fire,
+        has_terrace,
+        has_garden,
+        garden_area,
+        amount_of_facades,
+        has_pool,
+        land_area,
+        region
+        ]
+    
+    return df
 
 
