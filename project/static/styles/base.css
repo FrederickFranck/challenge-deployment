@@ -1,0 +1,26 @@
+@font-face {
+    font-family: bladerunner;
+    src: url('../BLADRMF_.TTF');
+
+}
+
+@font-face {
+    font-family: airstrike;
+    src: url("../airstrike.ttf");
+}
+
+html {
+    font-family: airstrike;
+    background-image: url(../house.webp);
+}
+
+
+h1 {
+    color: white;
+    font-size: 150px;
+}
+
+p { 
+    color: white;
+    font-size: 100px;
+}

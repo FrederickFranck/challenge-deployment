@@ -7,7 +7,7 @@ from model.model import create_model
 
 from predict.prediction import predict
 
-from flask import Flask,request
+from flask import Flask, request, render_template
 from joblib import load
 
 ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__)))
@@ -32,7 +32,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def home():
-    return "I am alive"
+    return render_template('index.html')
 
 @app.route("/predict", methods=['GET','POST'])
 @expects_json(schema, ignore_for=['GET'])
@@ -40,7 +40,7 @@ def route_predict():
     
     if request.method == 'GET':
         
-        return schema
+        return render_template('predict.html')
     
     if request.method == 'POST':
         json = request.json
@@ -58,4 +58,4 @@ if __name__ == '__main__':
     # Threaded option to enable multiple instances for
     # multiple user access support
     # You will also define the host to "0.0.0.0" because localhost will only be reachable from inside de server.
-    app.run(host="0.0.0.0", threaded=True, port=port)
+    app.run(host="0.0.0.0", threaded=True, port=port,debug=True)
