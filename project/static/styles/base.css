@@ -19,6 +19,13 @@ html {
 h1 {
     color: white;
     font-size: 70px;
+    font-weight:normal
+}
+
+h2 {
+    color: white;
+    font-size: 45px;
+    font-weight:normal
 }
 
 p { 

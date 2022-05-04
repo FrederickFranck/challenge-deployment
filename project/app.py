@@ -1,5 +1,4 @@
 import os
-import json
 from flask_expects_json import expects_json
 
 from preprocessing.cleaning_data import add_postcodes, clean_data , preprocess
@@ -8,7 +7,7 @@ from model.model import create_model
 
 from predict.prediction import predict
 
-from flask import Flask, redirect, request, render_template, url_for
+from flask import Flask, request, render_template
 from joblib import load
 
 ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__)))
@@ -34,21 +33,6 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route("/predict", methods=['GET','POST'])
-@expects_json(schema, ignore_for=['GET'])
-def route_predict(data=None):
-    
-    if request.method == 'GET':   
-        return render_template('predict.html')
-    
-    if request.method == 'POST':
-        json = request.json
-        df = preprocess(json)
-        print(df)   
-        
-        value = round(predict(model,df))
-        return render_template('predict.html', price=value) 
-
 
 @app.route("/api/predict", methods=['GET','POST'])
 @expects_json(schema, ignore_for=['GET'])
@@ -59,12 +43,28 @@ def route_api_predict():
     
     if request.method == 'POST':
         json = request.json
+        print(json)
         df = preprocess(json)
         print(df)   
         
         value = round(predict(model,df))
         return f"Predicted price is € {value:,}"  
 
+
+@app.route("/predict", methods=['GET','POST'])
+def route_predict(data=None):
+    
+    if request.method == 'GET':   
+        return render_template('predict.html')
+    
+    if request.method == 'POST':
+        print(data)
+        #json = request.json
+        df = preprocess(data)
+        print(df)   
+        
+        value = round(predict(model,df))
+        return render_template('predict.html', price=value) 
 
 @app.route("/predict/jsonify", methods=['POST'])
 def route_jsonify():
@@ -82,10 +82,8 @@ def route_jsonify():
     keys = ["area","rooms-number","facades-number","land-area","garden-area","terrace-area"]
     for key in keys:
         form[key] = int(form[key])
-        
-    json_data = json.dumps(form)
-    
-    return route_predict()
+
+    return route_predict(form)
 
 
 if __name__ == '__main__':
