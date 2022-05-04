@@ -12,15 +12,49 @@
 html {
     font-family: airstrike;
     background-image: url(../house.webp);
+    background-size: 100%;
 }
 
 
 h1 {
     color: white;
-    font-size: 150px;
+    font-size: 70px;
 }
 
 p { 
     color: white;
-    font-size: 100px;
+    font-size: 50px;
+}
+
+.column
+{
+    padding: 1%;
+    float: left;
+    width: 15%;
+    background-color: blue;
+    font-size: 20px;
+}
+
+input{
+    font-family: airstrike;
+    font-size: 20px;
+}
+
+input[type="checkbox"]{
+    padding: 1%;
+    width: 20px;
+    height: 20px;
+    accent-color: red;
+}
+
+select{
+    padding: 2%;
+    font-family: airstrike;
+    font-size: 20px;
+
+}
+
+form {
+    color: white;
+    font-size: 40px;
 }

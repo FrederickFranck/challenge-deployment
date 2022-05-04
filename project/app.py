@@ -1,4 +1,5 @@
 import os
+import json
 from flask_expects_json import expects_json
 
 from preprocessing.cleaning_data import add_postcodes, clean_data , preprocess
@@ -7,7 +8,7 @@ from model.model import create_model
 
 from predict.prediction import predict
 
-from flask import Flask, request, render_template
+from flask import Flask, redirect, request, render_template, url_for
 from joblib import load
 
 ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__)))
@@ -15,7 +16,6 @@ RAW_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Scraper.csv')
 POSTC_DATA = os.path.join(ROOT_DIR,'data','zipcode-belgium.csv')
 CLEAN_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Clean.csv')
 MODEL_DIR = os.path.join(ROOT_DIR,'model','GBR.joblib')
-
 
 
 MODEL = 0
@@ -36,10 +36,9 @@ def home():
 
 @app.route("/predict", methods=['GET','POST'])
 @expects_json(schema, ignore_for=['GET'])
-def route_predict():
+def route_predict(data=None):
     
-    if request.method == 'GET':
-        
+    if request.method == 'GET':   
         return render_template('predict.html')
     
     if request.method == 'POST':
@@ -48,8 +47,45 @@ def route_predict():
         print(df)   
         
         value = round(predict(model,df))
-        return f"Predicted price is € {value:,}"     
-            
+        return render_template('predict.html', price=value) 
+
+
+@app.route("/api/predict", methods=['GET','POST'])
+@expects_json(schema, ignore_for=['GET'])
+def route_api_predict():
+    
+    if request.method == 'GET':
+        return schema
+    
+    if request.method == 'POST':
+        json = request.json
+        df = preprocess(json)
+        print(df)   
+        
+        value = round(predict(model,df))
+        return f"Predicted price is € {value:,}"  
+
+
+@app.route("/predict/jsonify", methods=['POST'])
+def route_jsonify():
+    form = request.form.to_dict(flat=True)
+    
+    #Check boolean values
+    keys = ["garden","equipped-kitchen","swimming-pool","furnished","open-fire","terrace"]
+    for key in keys:
+        if key in form:
+            form[key] = True
+        else:
+            form[key] = False
+    
+    #Check integer values
+    keys = ["area","rooms-number","facades-number","land-area","garden-area","terrace-area"]
+    for key in keys:
+        form[key] = int(form[key])
+        
+    json_data = json.dumps(form)
+    
+    return route_predict()
 
 
 if __name__ == '__main__':

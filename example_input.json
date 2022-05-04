@@ -1,0 +1,18 @@
+{
+    "area":96,
+    "property-type":"House",
+    "rooms-number":3,
+    "zip-code":"9150",
+    "facades-number":4,
+    "building-state":"new",
+    "land-area":100,
+    "garden":false,
+    "garden-area":0,
+    "equipped-kitchen":false,
+    "swimming-pool":false,
+    "furnished":false,
+    "open-fire":false,
+    "terrace":true,
+    "terrace-area":0
+   
+}
