@@ -1,86 +1,67 @@
+# JSON schema
+# Used to validate json recieved in POST requests
+
 schema = {
-    "type":"object",
-    "properties":{
-
-        "area":{
-            "description": "area of the house",
-            "type":"integer",
-            "minimum": 0
-        },
-        
-        "property-type":{
+    "type": "object",
+    "properties": {
+        "area": {"description": "area of the house", "type": "integer", "minimum": 0},
+        "property-type": {
             "description": "Type of property : ['House','Apartment']",
-            "type":"string"
+            "type": "string",
         },
-
-        "rooms-number":{
+        "rooms-number": {
             "description": "The amount of rooms",
-            "type":"integer",
-            "minimum": 0
+            "type": "integer",
+            "minimum": 0,
         },
-
-        "zip-code":{
-            "description": "Postcode of the property",
-            "type":"string"
-        },
-
-        "land-area":{
+        "zip-code": {"description": "Postcode of the property", "type": "string"},
+        "land-area": {
             "description": "Total area of the property (Optional)",
-            "type":"integer"
+            "type": "integer",
         },
-
-        "garden":{
+        "garden": {
             "description": "Does the property have a garden (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "garden-area":{
+        "garden-area": {
             "description": "Area of the garden (Optional)",
-            "type":"integer",
-            "minimum": 0
+            "type": "integer",
+            "minimum": 0,
         },
-
-        "equipped-kitchen":{
+        "equipped-kitchen": {
             "description": "Does the property have a fully equipped kitchen (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "swimming-pool":{
+        "swimming-pool": {
             "description": "Does the property have a pool (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "furnished":{
+        "furnished": {
             "description": "Is the propety furnished (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "open-fire":{
+        "open-fire": {
             "description": "Does the property have an open fire (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "terrace":{
+        "terrace": {
             "description": "Does the property have a terrace (Optional)",
-            "type":"boolean"
+            "type": "boolean",
         },
-
-        "terrace-area":{
+        "terrace-area": {
             "description": "Area of the terrace (Optional)",
-            "type":"integer",
-            "minimum": 0
+            "type": "integer",
+            "minimum": 0,
         },
-
-        "facades-number":{
+        "facades-number": {
             "description": "Amount of facades of the property (Optional)",
-            "type":"integer",
-            "minimum": 0
+            "type": "integer",
+            "minimum": 0,
         },
-
-        "building-state":{
+        "building-state": {
             "description": "Current state of the building (Optional)",
-            "type":"string"
-        }       
+            "type": "string",
+        },
     },
-    "required": ["area","property-type","rooms-number","zip-code"]
+    "required": ["area", "property-type", "rooms-number", "zip-code"],
 }
