@@ -2,3 +2,4 @@
 /deploy-app
 __pycache__/
 *.ipynb
+deploy
