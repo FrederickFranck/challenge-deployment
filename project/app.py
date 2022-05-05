@@ -1,14 +1,13 @@
 import os
 from flask_expects_json import expects_json
+from flask import Flask, request, render_template
+from joblib import load
 
 from preprocessing.cleaning_data import add_postcodes, clean_data , preprocess
 from preprocessing.schema import schema
 from model.model import create_model
-
 from predict.prediction import predict
 
-from flask import Flask, request, render_template
-from joblib import load
 
 ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__)))
 RAW_DATA = os.path.join(ROOT_DIR,'data','Immoweb_Data_Scraper.csv')
@@ -33,6 +32,11 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+
+@app.route("/api", methods=['GET'])
+def route_api():
+    
+    return "I am alive !"
 
 @app.route("/api/predict", methods=['GET','POST'])
 @expects_json(schema, ignore_for=['GET'])
