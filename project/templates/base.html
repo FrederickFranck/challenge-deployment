@@ -1,13 +1,15 @@
 <!doctype hmtl>
 
 <title>{% block title %} {% endblock %} - Immo Eliza </title>
-<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/base.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base.css') }}">
 
-<!--
 <nav>
-    <h1>Immo Eliza</h1>
+    <ul>
+        <li> <a href="{{ url_for('home') }}">Home</a></li>
+        <li> <a href="{{url_for('route_predict')}}">Predict </a></li>
+    </ul>
 </nav>
--->
+
 <section class="content">
     <header>
         {% block header %}{% endblock %}

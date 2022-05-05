@@ -8,94 +8,101 @@
 {% endblock %}
 
 {% block content %}
-    <form action="/predict/jsonify" method="post"> 
-        Predict House Price
-        <br>
-        <br>
+<form action="/predict/jsonify" method="post">
+    Predict House Price
+    <br>
+    <br>
 
 
-        <div class="column">
-            <label for="property-type">Property Type:</label><br><br>
-            <select id="property-type" name="property-type">
-                <option value="house">House</option>
-                <option value="apartment">Apartment</option>
-            </select>
-            <br><br>
+    <div class="column">
+        <label for="property-type">Property Type:</label><br><br>
+        <select id="property-type" name="property-type">
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+        </select>
+        <br><br>
 
-            <label for="rooms-number">Amount of rooms:</label><br><br>
-            <input type="number" id="rooms-number" name="rooms-number" value=0 onfocus="this.value=''">
-            <br><br>
+        <label for="rooms-number">Amount of rooms:</label><br><br>
+        <input type="number" id="rooms-number" name="rooms-number" value=0 onfocus="this.value=''">
+        <br><br>
 
-            <label for="zip-code">Postcode:</label><br><br>
-            <input type="number" id="zip-code" name="zip-code" value=0 onfocus="this.value=''">
-            <br><br>
+        <label for="zip-code">Postcode:</label><br><br>
+        <input type="number" id="zip-code" name="zip-code" value=0 onfocus="this.value=''">
+        <br><br>
 
-            <label for="area">Area:</label><br><br>
-            <input type="number" id="area" name="area" value=0 onfocus="this.value=''">
-            <br><br>
+        <label for="area">Area:</label><br><br>
+        <input type="number" id="area" name="area" value=0 onfocus="this.value=''">
+        <br><br>
 
-            <label for="land-area">Total area:</label><br><br>
-            <input type="number" id="land-area" name="land-area" value=0 onfocus="this.value=''">
-            <br><br>
+        <label for="land-area">Total area:</label><br><br>
+        <input type="number" id="land-area" name="land-area" value=0 onfocus="this.value=''">
+        <br><br>
+        <br><br>
 
-            <label for="facades-number">Amount of facades:</label><br><br>
-            <input type="number" id="facades-number" name="facades-number" value=0 onfocus="this.value=''">
-            <br><br>
-
-            <label for="building-state">State of the building:</label><br><br>
-            <select id="building-state" name="building-state">
-                <option value="as new">as new</option>
-                <option value="good">good</option>
-                <option value="to renovate">to renovate</option>
-            </select>
-            <br><br>
-            <br><br>
-            <input type="submit" value="Calculate">
-        </div>
-
-        
-
-        <div class="column">
-
-            <label for="garden">Garden present:</label>
-            <input type="checkbox" id="garden" name="garden" value=true>
-            <br><br>
-
-            <label for="garden-area">Total area of the garden:</label><br><br>
-            <input type="number" id="garden-area" name="garden-area" value=0 onfocus="this.value=''">
-            <br><br>
-
-            <label for="terrace">Terrace present:</label>
-            <input type="checkbox" id="terrace" name="terrace" value=true>
-            <br><br>
-
-            <label for="terrace-area">Total area of the terrace:</label><br><br>
-            <input type="number" id="terrace-area" name="terrace-area" value=0 onfocus="this.value=''">
-            <br><br>
+        <input type="submit" value="Calculate">
+    </div>
 
 
-            <label for="equipped-kitchen">Fully equiped kitchen:</label>
-            <input type="checkbox" id="equipped-kitchen" name="equipped-kitchen" value=true>
-            <br><br>
 
-            <label for="swimming-pool">Has a pool:</label>
-            <input type="checkbox" id="swimming-pool" name="swimming-pool" value=true>
-            <br><br>
+    <div class="column">
+        <label for="facades-number">Amount of facades:</label><br><br>
+        <input type="number" id="facades-number" name="facades-number" value=0 onfocus="this.value=''">
+        <br><br>
 
-            <label for="furnished">Is fully furnished:</label>
-            <input type="checkbox" id="furnished-kitchen" name="furnished" value=true>
-            <br><br>
+        <label for="building-state">State of the building:</label><br><br>
+        <select id="building-state" name="building-state">
+            <option value="as new">as new</option>
+            <option value="good">good</option>
+            <option value="to renovate">to renovate</option>
+        </select>
+        <br><br>
+        <br><br>
 
-            <label for="open-fire">Has an open fire:</label>
-            <input type="checkbox" id="open-fire" name="open-fire" value=true>
-            <br><br>
+        <label for="garden">Garden present:</label>
+        <input type="checkbox" id="garden" name="garden" value=true>
+        <br><br>
 
-            {% if price %}
-                <h3>Your Predicted Price is :</h3><br>
-                <h2>€{{ price }}</h2> 
-            {% endif %}
-        </div>
+        <label for="garden-area">Total area of the garden:</label><br><br>
+        <input type="number" id="garden-area" name="garden-area" value=0 onfocus="this.value=''">
+        <br><br>
 
-    </form><br>
+        <label for="terrace">Terrace present:</label>
+        <input type="checkbox" id="terrace" name="terrace" value=true>
+        <br><br>
+
+        <label for="terrace-area">Total area of the terrace:</label><br><br>
+        <input type="number" id="terrace-area" name="terrace-area" value=0 onfocus="this.value=''">
+        <br><br>
+
+
+
+    </div>
+
+    <div class="column">
+
+        <label for="equipped-kitchen">Fully equiped kitchen:</label>
+        <input type="checkbox" id="equipped-kitchen" name="equipped-kitchen" value=true>
+        <br><br>
+
+        <label for="swimming-pool">Has a pool:</label>
+        <input type="checkbox" id="swimming-pool" name="swimming-pool" value=true>
+        <br><br>
+
+        <label for="furnished">Is fully furnished:</label>
+        <input type="checkbox" id="furnished-kitchen" name="furnished" value=true>
+        <br><br>
+
+        <label for="open-fire">Has an open fire:</label>
+        <input type="checkbox" id="open-fire" name="open-fire" value=true>
+        <br><br>
+        <br><br>
+        {% if price %}
+        <h3>Your Predicted Price is :</h3><br>
+        <h2>€{{ price }}</h2>
+        {% endif %}
+
+    </div>
+
+</form><br>
 
 {% endblock %}
