@@ -18,8 +18,9 @@ MODEL_DIR = os.path.join(ROOT_DIR, "model", "GBR.joblib")
 
 
 # Build model
-MODEL = 0
-if MODEL:
+# Set this to 1 if you want to rebuild the model on startup
+BUILD_MODEL = 0
+if BUILD_MODEL:
     # Clean data & build the model
     clean_data(RAW_DATA, CLEAN_DATA)
     add_postcodes(CLEAN_DATA, POSTC_DATA)

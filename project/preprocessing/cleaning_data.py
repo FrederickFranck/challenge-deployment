@@ -36,7 +36,6 @@ def clean_data(raw_filename: String, clean_filename: String) -> None:
     cleandf = cleandf.drop(columns="terrace_area")
     cleandf = cleandf.drop(columns="surface_area_plot")
     cleandf = cleandf.drop(columns="surface_land")
-    
 
     # Reset index
     cleandf.reset_index(drop=True, inplace=True)
@@ -49,14 +48,14 @@ def clean_data(raw_filename: String, clean_filename: String) -> None:
 def add_postcodes(clean_filename: String, postc_filename: String) -> None:
     df = pd.read_csv(clean_filename)
     z = pd.read_csv(postc_filename)
-    
-    #Removing Extreme outliers
-    df = df.drop(df[df['sub_type']  == 'castle'].index)
-    df = df.drop(df[df['price'] > 8000000].index)
-    df = df.drop(df[df['amount_of_rooms'] > 60].index)
-    df = df.drop(df[df['area'] > 4000].index)
-    df = df.drop(df[df['garden_area'] > 60000].index)
-    df = df.drop(df[df['land_area'] > 300000].index)
+
+    # Removing Extreme outliers
+    df = df.drop(df[df["sub_type"] == "castle"].index)
+    df = df.drop(df[df["price"] > 8000000].index)
+    df = df.drop(df[df["amount_of_rooms"] > 60].index)
+    df = df.drop(df[df["area"] > 4000].index)
+    df = df.drop(df[df["garden_area"] > 60000].index)
+    df = df.drop(df[df["land_area"] > 300000].index)
 
     # Get postcode where citynames are the same
     def getzip(x):

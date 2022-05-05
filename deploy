@@ -1,9 +1,0 @@
-#BUILD DOCKER
-docker build . -t immo-deploy
-docker run -d -p 5000:5000 immo-deploy
-
-#DEPLOY TO HEROKU
-sudo heroku login
-sudo heroku container:login
-sudo heroku container:push web -a immo-eliza-app
-sudo heroku container:release web -a immo-eliza-app
