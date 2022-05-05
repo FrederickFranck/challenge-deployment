@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "https://frederickfranck.info/shemas/input.json",
     "title": "API INPUT",
-    "description": "Input for https://immo-eliza-app.herokuapp.com/predict POST requests",
+    "description": "Input for https://immo-eliza-app.herokuapp.com/api/predict POST requests",
 
     "type":"object",
     "properties":{
