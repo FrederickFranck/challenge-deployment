@@ -34,7 +34,7 @@ app = Flask(__name__)
 # Default API route
 @app.route("/api", methods=["GET"])
 def route_api():
-    return "I am alive !"
+    return "Still Alive !"
 
 
 # Predict API route
