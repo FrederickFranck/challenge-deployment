@@ -23,19 +23,19 @@
         <br><br>
 
         <label for="rooms-number">Amount of rooms:</label><br><br>
-        <input type="number" id="rooms-number" name="rooms-number" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="rooms-number" name="rooms-number" value=0 onfocus="this.value=''">
         <br><br>
 
         <label for="zip-code">Postcode:</label><br><br>
-        <input type="number" id="zip-code" name="zip-code" value=0 onfocus="this.value=''">
+        <input type="text" id="zip-code" name="zip-code" value=0000 pattern="[0-9]{4}" maxlength="4" onfocus="this.value=''">
         <br><br>
 
         <label for="area">Area:</label><br><br>
-        <input type="number" id="area" name="area" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="area" name="area" value=0 onfocus="this.value=''">
         <br><br>
 
         <label for="land-area">Total area:</label><br><br>
-        <input type="number" id="land-area" name="land-area" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="land-area" name="land-area" value=0 onfocus="this.value=''">
         <br><br>
         <br><br>
 
@@ -46,7 +46,7 @@
 
     <div class="column">
         <label for="facades-number">Amount of facades:</label><br><br>
-        <input type="number" id="facades-number" name="facades-number" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="facades-number" name="facades-number" value=0 onfocus="this.value=''">
         <br><br>
 
         <label for="building-state">State of the building:</label><br><br>
@@ -63,7 +63,7 @@
         <br><br>
 
         <label for="garden-area">Total area of the garden:</label><br><br>
-        <input type="number" id="garden-area" name="garden-area" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="garden-area" name="garden-area" value=0 onfocus="this.value=''">
         <br><br>
 
         <label for="terrace">Terrace present:</label>
@@ -71,7 +71,7 @@
         <br><br>
 
         <label for="terrace-area">Total area of the terrace:</label><br><br>
-        <input type="number" id="terrace-area" name="terrace-area" value=0 onfocus="this.value=''">
+        <input type="number" min="0" id="terrace-area" name="terrace-area" value=0 onfocus="this.value=''">
         <br><br>
 
 

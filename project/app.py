@@ -73,7 +73,6 @@ def route_predict(data=None):
     if request.method == "POST":
 
         df = preprocess(data)
-        print(df)
         value = round(predict(model, df))
         return render_template("predict.html", price=value)
 
