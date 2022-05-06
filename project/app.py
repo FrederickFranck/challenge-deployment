@@ -73,6 +73,7 @@ def route_predict(data=None):
     if request.method == "POST":
 
         df = preprocess(data)
+        print(df)
         value = round(predict(model, df))
         return render_template("predict.html", price=value)
 
@@ -119,7 +120,10 @@ def route_jsonify():
                 form[key] = 0
         else:
             form[key] = 0
-
+                    
+    if form['zip-code'] == '':
+        form['zip-code'] = '0000'
+            
     return route_predict(form)
 
 
